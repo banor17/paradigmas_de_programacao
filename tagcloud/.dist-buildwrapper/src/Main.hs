@@ -46,11 +46,20 @@ svgCloudGen w h dataset =
         (concat (svgBubbleGen w h dataset)) ++ "</svg>\n"
 
 
+-- Converte dataset para uma lista de floats para poder usar as frequencias como raios
+converteDataset :: [Int] -> [Float]
+converteDataset dataset = map (fromIntegral) dataset
+
+-- Ajeita o raio para nao ficar muito grande na tela 
+ajeitaraioDataset :: [Int] -> [Float]
+ajeitaraioDataset dataset = map (/50) (converteDataset dataset)
+
+
 -- Esta funcao deve gerar a lista de circulos em formato SVG.
 -- A implementacao atual eh apenas um teste que gera um circulo posicionado no meio da figura.
 -- TODO: Alterar essa funcao para usar os dados do dataset.
 svgBubbleGen:: Int -> Int -> [Int] -> [String]
-svgBubbleGen w h dataset = svgCircle ((fromIntegral w/2, fromIntegral h/2), fromIntegral (head dataset)/10) : []
+svgBubbleGen w h dataset = [svgCircle ((fromIntegral w/2, fromIntegral h/2), head (ajeitaraioDataset dataset))]
 
 
 -- Gera string representando um circulo em SVG. A cor do circulo esta fixa. 
