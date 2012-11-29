@@ -54,9 +54,9 @@ converteDataset dataset = map (fromIntegral) dataset
 ajeitaraioDataset :: [Int] -> [Float]
 ajeitaraioDataset dataset = map (/50) (converteDataset dataset)
 
--- Gera as coordenadas da elipse em função da largura e altura da figura
-geraCoordenadasElipse :: Float -> Float -> (Float, Float)
-geraCoordenadasElipse w h = (w*50 *(cos 50), h*50 *(cos 50))
+-- Gera as coordenadas da espiral em função da largura e altura da figura
+geraCoordenadasEspiral :: Float -> Float -> [Int] -> (Float, Float)
+geraCoordenadasEspiral a t dataset = (a * t *(cos t), a * t *(cos t))
 
 
 -- Esta funcao deve gerar a lista de circulos em formato SVG.
